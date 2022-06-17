@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="app_name_size">28sp</dimen>
-    <dimen name="c_size">22sp</dimen>
     <dimen name="description_size">20sp</dimen>
+    <dimen name="btn_text">22sp</dimen>
 </resources>

@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">Developers Life</string>
-    <string name="c_last">Last</string>
-    <string name="c_random">Random</string>
-    <string name="c_best">Best</string>
     <string name="btn_back">Back</string>
     <string name="btn_next">Next</string>
 

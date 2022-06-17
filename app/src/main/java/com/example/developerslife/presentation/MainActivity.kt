@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.developerslife.R
 import com.example.developerslife.databinding.ActivityMainBinding
-import com.example.developerslife.presentation.fragments.MainScreenFragment
+import com.example.developerslife.presentation.fragments.mainscreen.MainScreenFragment
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
