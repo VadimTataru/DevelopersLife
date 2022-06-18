@@ -13,7 +13,6 @@ import javax.inject.Singleton
 @Module
 class NetworkModule {
 
-    @Singleton
     @Provides
     fun provideRetrofit(
         gsonConverterFactory: GsonConverterFactory,
@@ -26,25 +25,21 @@ class NetworkModule {
             .build()
     }
 
-    @Singleton
     @Provides
     fun provideGson(): Gson {
         return Gson()
     }
 
-    @Singleton
     @Provides
     fun provideGsonConverterFactory(): GsonConverterFactory {
         return GsonConverterFactory.create()
     }
 
-    @Singleton
     @Provides
     fun provideRxJavaCallAdapterFactory(): RxJava2CallAdapterFactory {
         return RxJava2CallAdapterFactory.create()
     }
 
-    @Singleton
     @Provides
     fun provideService(retrofit: Retrofit): IDevelopersLifeAPI {
         return retrofit.create(IDevelopersLifeAPI::class.java)
