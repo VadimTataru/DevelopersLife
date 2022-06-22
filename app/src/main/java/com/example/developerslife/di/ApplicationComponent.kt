@@ -6,5 +6,6 @@ import dagger.Component
 
 @Component(modules = [DomainModule::class, DataModule::class, NetworkModule::class, AppModule::class])
 interface ApplicationComponent {
-    fun inject(mainScreenViewModel: MainScreenViewModel)
+    //Fragments
+    fun inject(fragment: MainScreenFragment)
 }
