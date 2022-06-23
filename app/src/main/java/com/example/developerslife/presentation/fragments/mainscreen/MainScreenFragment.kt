@@ -7,7 +7,9 @@ import androidx.fragment.app.viewModels
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.developerslife.app.App
 import com.example.developerslife.databinding.FragmentMainScreenBinding
 import com.example.developerslife.domain.usecase.GetMemeUseCase
@@ -21,13 +23,9 @@ class MainScreenFragment : Fragment() {
     @Inject
     lateinit var mainScreenViewModel: MainScreenViewModel
     lateinit var binding: FragmentMainScreenBinding
-    private val compositeDisposable = CompositeDisposable()
-    //@Inject
-    //lateinit var useCase: GetMemeUseCase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //(applicationContext as App).appComponent.inject(this@MainScreenFragment)
         (this.activity?.applicationContext as App).appComponent.inject(this@MainScreenFragment)
     }
 
@@ -41,22 +39,20 @@ class MainScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //loadMeme()
-        binding.btnNext.setOnClickListener {
-            loadMeme()
-        }
-    }
 
-    private fun loadMeme() {
-        compositeDisposable.add(mainScreenViewModel.getMeme()
-            .subscribeOn(Schedulers.single())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                glideIt(it.gifUrl)
-                binding.tvDescription.text = it.description
-            }, {
-                Log.d(LOG_TAG, "Error: ${it.message}")
-            }))
+        //mainScreenViewModel.fetchMeme()
+        binding.btnNext.setOnClickListener {
+            //use getNextMeme() to get next meme
+            //mainScreenViewModel.fetchMeme()
+        }
+
+        mainScreenViewModel.getDescriptionLive().observe(viewLifecycleOwner) { text ->
+            binding.tvDescription.text = text
+        }
+        mainScreenViewModel.getLinkLive().observe(viewLifecycleOwner) {
+            glideIt(it)
+        }
+
     }
 
     private fun glideIt(link: String?) {
@@ -64,11 +60,12 @@ class MainScreenFragment : Fragment() {
             .with(this)
             .load(link)
             .centerCrop()
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(binding.gifPlaceholder)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        compositeDisposable.dispose()
+        Glide.get(requireContext()).clearDiskCache()
     }
 }

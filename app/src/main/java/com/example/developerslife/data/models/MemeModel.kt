@@ -3,8 +3,8 @@ package com.example.developerslife.data.models
 import com.google.gson.annotations.SerializedName
 
 class MemeModel(
-    @SerializedName("description")
+    @SerializedName("answer")
     val description: String,
-    @SerializedName("gifURL")
+    @SerializedName("image")
     val gifUrl: String
 )
