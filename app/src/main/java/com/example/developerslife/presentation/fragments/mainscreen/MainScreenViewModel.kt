@@ -7,11 +7,11 @@ import androidx.lifecycle.ViewModel
 import com.example.developerslife.data.models.MemeModel
 import com.example.developerslife.domain.usecase.GetMemeUseCase
 import com.example.developerslife.utils.Constants
+import com.example.developerslife.utils.Constants.LOG_TAG
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import javax.inject.Inject
 
 open class MainScreenViewModel(
     private val getMemeUseCase: GetMemeUseCase
@@ -24,7 +24,7 @@ open class MainScreenViewModel(
 
     private val descriptions: MutableList<String> = mutableListOf()
     private val images: MutableList<String> = mutableListOf()
-    private var counter: Int = 1
+    private var counter: Int = 0
 
     override fun onCleared() {
         super.onCleared()
@@ -52,24 +52,27 @@ open class MainScreenViewModel(
             .subscribeOn(Schedulers.single())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
+                linkLive.value = it.gifUrl
                 images.add(it.gifUrl)
                 descriptionLive.value = it.description
+                descriptions.add(it.description)
             }, {
-                Log.d(Constants.LOG_TAG, "Error: ${it.message}")
+                Log.d(LOG_TAG, "Error: ${it.message}")
             }))
     }
 
-    fun nextMeme() {
+    fun getNextMeme() {
+        counter++
         if(counter >= descriptions.size) {
             fetchMeme()
+            return
         }
         linkLive.value = images[counter]
         descriptionLive.value = descriptions[counter]
-        counter++
         btnStateLive.value = counter != 0
     }
 
-    fun previousMeme() {
+    fun getPreviousMeme() {
         counter--
         linkLive.value = images[counter]
         descriptionLive.value = descriptions[counter]
