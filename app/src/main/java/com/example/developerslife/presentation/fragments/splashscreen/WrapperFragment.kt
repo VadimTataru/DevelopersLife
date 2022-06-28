@@ -29,7 +29,8 @@ class WrapperFragment : Fragment() {
 
     private fun getMainFragment() {
         Handler().postDelayed({
-            findNavController().navigate(R.id.action_wrapperFragment_to_mainScreenFragment)
+            findNavController().navigate(R.id.mainScreenFragment)
         }, Constants.WRAPPER_DELAY_TIME.toLong())
+
     }
 }

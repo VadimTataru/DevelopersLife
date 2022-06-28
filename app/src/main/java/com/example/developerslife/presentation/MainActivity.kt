@@ -10,15 +10,16 @@ import com.example.developerslife.R
 import com.example.developerslife.databinding.ActivityMainBinding
 import com.example.developerslife.presentation.fragments.mainscreen.MainScreenFragment
 
-class MainActivity : FragmentActivity() {
+class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
-    lateinit var navController: NavController
+    //lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //initNavController()
+        /*val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
+        navController = navHostFragment.navController*/
 
         /*supportFragmentManager.beginTransaction()
             .replace(
@@ -26,10 +27,5 @@ class MainActivity : FragmentActivity() {
                 MainScreenFragment()
             )
             .commit()*/
-    }
-
-    private fun initNavController() {
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
-        navController = navHostFragment.navController
     }
 }
