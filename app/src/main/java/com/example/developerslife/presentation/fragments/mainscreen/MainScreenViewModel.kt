@@ -48,6 +48,7 @@ open class MainScreenViewModel(
     }
 
     fun fetchMeme() {
+        btnStateLive.value = counter != 0
         compositeDisposable.add(getMeme()
             .subscribeOn(Schedulers.single())
             .observeOn(AndroidSchedulers.mainThread())
