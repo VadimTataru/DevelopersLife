@@ -12,20 +12,10 @@ import com.example.developerslife.presentation.fragments.mainscreen.MainScreenFr
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
-    //lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        /*val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
-        navController = navHostFragment.navController*/
-
-        /*supportFragmentManager.beginTransaction()
-            .replace(
-                R.id.flContainer,
-                MainScreenFragment()
-            )
-            .commit()*/
     }
 }
