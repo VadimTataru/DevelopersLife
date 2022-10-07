@@ -9,6 +9,6 @@ class MemeRepositoryImpl(
     private val developersLife: IDevelopersLifeAPI
 ): IMemeRepository {
     override fun getMeme(): Single<MemeModel> {
-        return developersLife.getAnswer()
+        return developersLife.getMeme()
     }
 }

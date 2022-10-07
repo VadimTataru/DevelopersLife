@@ -1,6 +1,7 @@
 package com.example.developerslife.presentation.fragments.mainscreen
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.developerslife.app.App
 import com.example.developerslife.databinding.FragmentMainScreenBinding
+import com.example.developerslife.utils.Constants.LOG_TAG
 import javax.inject.Inject
 
 class MainScreenFragment : Fragment() {
@@ -19,6 +21,7 @@ class MainScreenFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (this.activity?.applicationContext as App).appComponent.inject(this@MainScreenFragment)
+        Log.d(LOG_TAG, "fragment onCreate");
     }
 
     override fun onCreateView(
