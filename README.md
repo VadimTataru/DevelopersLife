@@ -1,8 +1,7 @@
 # Developers Life
 
 ## О приложении
-Developers Life - это приложение android, которое показывает мемы на тему программирования, IT-сферы.
-API, использованное для работы приложения - `https://developerslife.ru/random?json=true`
+Developers Life - приложение для работы с [API DevelopersLife](https://developerslife.ru/random?json=true).
 Скриншоты прикреплены ниже.
 
 ## About my app.
